@@ -6,12 +6,13 @@
         xmlns:local="clr-namespace:ByteBank.Agencias"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Canvas>
-        
-        <ListBox 
+    <Canvas Name="container">
+
+        <!--<ListBox
+            Name="lstAgencias"
             Width="290" 
             Height="290">
-        </ListBox>
+        </ListBox>-->
         <StackPanel Canvas.Top="15" Canvas.Left="290">
             <TextBlock FontWeight="Bold">Número</TextBlock>
             <TextBlock Name="txtNumero" ></TextBlock>
@@ -24,5 +25,8 @@
             <TextBlock FontWeight="Bold">Endereço</TextBlock>
             <TextBlock Name="txtEndereco"></TextBlock>
         </StackPanel>
+        <Button Content="Excluir" Canvas.Left="432" Canvas.Top="289" Width="75" Name="btnExcluir"/>
+        <Button Content="Editar" Canvas.Left="352" Canvas.Top="289" Width="75" x:Name="btnEditar"/>
+
     </Canvas>
 </Window>

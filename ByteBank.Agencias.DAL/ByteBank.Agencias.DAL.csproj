@@ -64,60 +64,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Agencia.cs">
-      <DependentUpon>ByteBankModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ByteBankModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ByteBankModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ByteBankModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ByteBankModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ByteBankModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ByteBankModel.edmx</DependentUpon>
-    </Compile>
+    <Compile Include="Agencia.cs" />
+    <Compile Include="AgenciaMetodos.cs" />
+    <Compile Include="ByteBank.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config">
       <SubType>Designer</SubType>
     </None>
-    <EntityDeploy Include="ByteBankModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ByteBankModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="ByteBankModel.edmx.diagram">
-      <DependentUpon>ByteBankModel.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ByteBank.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ByteBankModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ByteBankModel.edmx</DependentUpon>
-      <LastGenOutput>ByteBankModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="ByteBankModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ByteBankModel.edmx</DependentUpon>
-      <LastGenOutput>ByteBankModel.cs</LastGenOutput>
-    </Content>
-    <Content Include="ByteBank_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>ByteBank.mdf</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
