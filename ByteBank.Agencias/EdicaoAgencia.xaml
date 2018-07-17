@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ByteBank.Agencias"
         mc:Ignorable="d"
-        Title="EdicaoAgencia" Height="300" Width="300">
+        Title="EdicaoAgencia" Height="300" Width="310">
     <Canvas>
         <StackPanel Canvas.Top="15" Canvas.Left="15">
             <TextBlock FontWeight="Bold">Número</TextBlock>
@@ -26,10 +26,12 @@
                 <Button 
                     Content="Ok" 
                     Margin="15,0"
-                    Padding="5"/>
+                    Padding="5"
+                    Name="btnOk"/>
                 <Button
                     Content="Cancelar"
-                    Padding="5"/>
+                    Padding="5"
+                    Name="btnCancelar"/>
             </StackPanel>
             
         </StackPanel>
