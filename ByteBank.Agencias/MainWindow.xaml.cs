@@ -29,7 +29,9 @@ namespace ByteBank.Agencias
             InitializeComponent();
 
             lstAgencias = new ListBox();
+
             AtualizarControles();
+            AtualizarListaDeAgencias();
         }
 
         private void AtualizarControles()
@@ -44,8 +46,11 @@ namespace ByteBank.Agencias
 
             container.Children.Add(lstAgencias);
 
-            
-            AtualizarListaDeAgencias();
+            btnEditar.Click += new RoutedEventHandler(btnEditar_Click); 
+        }
+
+        private void btnEditar_Click(object sender, RoutedEventArgs e)
+        {
 
         }
 
