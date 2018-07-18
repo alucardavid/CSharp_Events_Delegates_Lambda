@@ -30,6 +30,8 @@ namespace ByteBank.Agencias
 
             AtualizarCamposDeTexto();
             AtualizarControles();
+
+
         }
 
         private void AtualizarControles()
@@ -42,41 +44,25 @@ namespace ByteBank.Agencias
 
             btnOk.Click += okEventHandler;
             btnCancelar.Click += cancelarEventHandler;
-            txtNome.TextChanged += ValidarCampoNulo;
-            txtDescricao.TextChanged += ValidarCampoNulo;
-            txtEndereco.TextChanged += ValidarCampoNulo;
 
-            txtNumero.TextChanged += ValidarCampoNulo;
-            txtNumero.TextChanged += ValidarSomenteDigito;
+            txtNumero.Validacao += ValidarCampoNulo;
+            txtNumero.Validacao += ValidarSomenteDigito;
 
-            txtTelefone.TextChanged += ValidarCampoNulo;
+            txtNome.Validacao += ValidarCampoNulo;
+            txtDescricao.Validacao += ValidarCampoNulo;
+            txtTelefone.Validacao += ValidarCampoNulo;
+            txtEndereco.Validacao += ValidarCampoNulo;
 
         }
 
-        private void ValidarSomenteDigito(object sender, EventArgs e)
+        private bool ValidarSomenteDigito(string texto)
         {
-            var txt = sender as TextBox;
-
-            Func<char, bool> verificaSeEhDigito = caractere =>
-            {
-                return Char.IsDigit(caractere);
-            };
-
-            var todosCaracteresSaoDigitos = txt.Text.All(verificaSeEhDigito);
-
-            txt.Background = todosCaracteresSaoDigitos
-                ? new SolidColorBrush(Colors.White)
-                : new SolidColorBrush(Colors.OrangeRed);
+            return texto.All(Char.IsDigit);
         }
 
-        private void ValidarCampoNulo(object sender, EventArgs e)
+        private bool ValidarCampoNulo(string texto)
         {
-            var txt = sender as TextBox;
-            var textoEstaVazio = String.IsNullOrEmpty(txt.Text);
-
-            txt.Background = textoEstaVazio
-                ? new SolidColorBrush(Colors.OrangeRed)
-                : new SolidColorBrush(Colors.White);
+            return !String.IsNullOrEmpty(texto);
         }
 
         private void AtualizarCamposDeTexto()
