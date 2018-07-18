@@ -34,8 +34,17 @@ namespace ByteBank.Agencias
 
         private void AtualizarControles()
         {
-            var okEventHandler = (RoutedEventHandler)btnOK_Click + Fechar;
-            var cancelarEventHandler = (RoutedEventHandler)btnCancelar_Click + Fechar;
+            RoutedEventHandler dialogResultTrue = delegate (object o, RoutedEventArgs e)
+            {
+                DialogResult = true;
+            };
+            RoutedEventHandler dialogResultFalse = delegate (object o, RoutedEventArgs e)
+            {
+                DialogResult = false;
+            };
+
+            var okEventHandler = dialogResultTrue + Fechar;
+            var cancelarEventHandler = dialogResultFalse + Fechar;
 
             btnOk.Click += okEventHandler;
             btnCancelar.Click += cancelarEventHandler;
@@ -44,12 +53,6 @@ namespace ByteBank.Agencias
             btnCancelar.Click += new RoutedEventHandler(Fechar);
 
         }
-
-        private void btnOK_Click(object sender, RoutedEventArgs e) =>
-            DialogResult = true;
-
-        private void btnCancelar_Click(object sender, RoutedEventArgs e) =>
-            DialogResult = false;
 
         private void AtualizarCamposDeTexto()
         {
