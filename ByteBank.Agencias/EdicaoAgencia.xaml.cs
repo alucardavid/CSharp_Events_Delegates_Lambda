@@ -42,7 +42,41 @@ namespace ByteBank.Agencias
 
             btnOk.Click += okEventHandler;
             btnCancelar.Click += cancelarEventHandler;
+            txtNome.TextChanged += ValidarCampoNulo;
+            txtDescricao.TextChanged += ValidarCampoNulo;
+            txtEndereco.TextChanged += ValidarCampoNulo;
 
+            txtNumero.TextChanged += ValidarCampoNulo;
+            txtNumero.TextChanged += ValidarSomenteDigito;
+
+            txtTelefone.TextChanged += ValidarCampoNulo;
+
+        }
+
+        private void ValidarSomenteDigito(object sender, EventArgs e)
+        {
+            var txt = sender as TextBox;
+
+            Func<char, bool> verificaSeEhDigito = caractere =>
+            {
+                return Char.IsDigit(caractere);
+            };
+
+            var todosCaracteresSaoDigitos = txt.Text.All(verificaSeEhDigito);
+
+            txt.Background = todosCaracteresSaoDigitos
+                ? new SolidColorBrush(Colors.White)
+                : new SolidColorBrush(Colors.OrangeRed);
+        }
+
+        private void ValidarCampoNulo(object sender, EventArgs e)
+        {
+            var txt = sender as TextBox;
+            var textoEstaVazio = String.IsNullOrEmpty(txt.Text);
+
+            txt.Background = textoEstaVazio
+                ? new SolidColorBrush(Colors.OrangeRed)
+                : new SolidColorBrush(Colors.White);
         }
 
         private void AtualizarCamposDeTexto()
