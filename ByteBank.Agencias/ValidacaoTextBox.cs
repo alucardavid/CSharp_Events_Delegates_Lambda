@@ -8,8 +8,7 @@ using System.Windows.Media;
 
 namespace ByteBank.Agencias
 {
-    public delegate bool ValidacaoEventHandler(string texto);
-
+    public delegate void ValidacaoEventHandler(object sender, ValidacaoEventArgs e);
 
     public class ValidacaoTextBox : TextBox
     {
@@ -27,36 +26,38 @@ namespace ByteBank.Agencias
             }
         }
 
-        public ValidacaoTextBox()
+        protected override void OnTextChanged(TextChangedEventArgs e)
         {
-            TextChanged += ValidacaoTextBox_TextChanged;
-        }
-
-        private void ValidacaoTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
+            base.OnTextChanged(e);
             OnValidacao();
         }
 
-        private void OnValidacao()
+        protected virtual void OnValidacao()
         {
-            var listaValidacao = _validacao.GetInvocationList();
-            var ehValido =  true;
-
-            foreach (ValidacaoEventHandler validacao in listaValidacao)
-            {
-                if (!validacao(Text))
-                {
-                    ehValido = false;
-                    break;
-                }
-            }
-
             if (_validacao != null)
             {
+                var listaValidacao = _validacao.GetInvocationList();
+                var eventArgs = new ValidacaoEventArgs(Text);
+                var ehValido =  true;
 
-                Background = ehValido
-                    ? new SolidColorBrush(Colors.White)
-                    : new SolidColorBrush(Colors.OrangeRed);
+                foreach (ValidacaoEventHandler validacao in listaValidacao)
+                {
+                    validacao(this, eventArgs);
+
+                    if (!eventArgs.EhValido)
+                    {
+                        ehValido = false;
+                        break;
+                    }
+                }
+
+                if (_validacao != null)
+                {
+
+                    Background = ehValido
+                        ? new SolidColorBrush(Colors.White)
+                        : new SolidColorBrush(Colors.OrangeRed);
+                }
             }
         }
     }
